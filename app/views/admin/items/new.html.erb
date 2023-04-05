@@ -12,6 +12,6 @@
   <P>税抜価格</P>
   <%= f.text_field :price %>
   <p>販売ステータス</p>
-  <%= f.select :is_active, [["販売中",true],["売り切れ",false]],include_blank: "選択して下さい" %>
+  <%= f.select :is_active, [["販売中",true],["販売停止中",false]],include_blank: "選択して下さい" %>
   <%= f.submit '新規登録' %>
 <% end %>
