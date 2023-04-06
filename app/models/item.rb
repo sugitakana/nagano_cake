@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   has_one_attached :image
-  belong_to :genre
-  
+  belongs_to :genre
+
   def get_image
    unless image.attached?
     file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
@@ -9,7 +9,7 @@ class Item < ApplicationRecord
    end
    image.variant(resize_to_limit: [250,250]).processed
   end
-  
+
   validates :name, presence: true
   validates :introduction, presence: true
   validates :price, presence: true
