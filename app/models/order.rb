@@ -1,8 +1,8 @@
 class Order < ApplicationRecord
-  
+
   has_many :order_details
   belongs_to :customer
-  
+
   validates :shipping_fee, presence: true
   validates :amount_billed, presence: true
   validates :payment_method, presence: true
