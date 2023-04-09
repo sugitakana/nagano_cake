@@ -10,11 +10,12 @@ Rails.application.routes.draw do
 }
 
 namespace :admin do
-  root to: "homes#top"
+  root to: "orders#index"
   resources :items, only: [:show, :index, :new, :create, :edit, :update]
   resources :genres, only:[:index, :create, :edit, :update]
   resources :customers, only:[:index, :edit, :update, :show]
-  resources :orders, only:[:show, :update]
+  resources :orders, only:[:index, :show, :update]
+  resources :order_details, only:[:update]
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
