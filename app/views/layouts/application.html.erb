@@ -6,11 +6,34 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <% if admin_signed_in? %>
+        <li><%= link_to "商品一覧", admin_items_path %></li>
+        <li><%= link_to "会員一覧", admin_customers_path %></li>
+        <li><%= link_to "注文履歴一覧", admin_orders_path %></li>
+        <li><%= link_to "ジャンル一覧", admin_genres_path %></li>
+        <li><%= link_to "ログアウト", destroy_admin_session_path %></li>
+      <% elsif customer_signed_in? %>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li><%= link_to "ログアウト", destroy_customer_session_path %></li>
+      <% else %>
+        <li></li>
+        <li></li>
+        <li><%= link_to "新規登録", new_customer_registration_payh %></li>
+        <li><%= link_to "ログイン", new_customer_session_path %></li>
+      <% end %>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+    </footer>
   </body>
 </html>
