@@ -1,8 +1,8 @@
 class Public::HomesController < ApplicationController
   
   def top
-    @genres = genre.all
-    @items = item.all
+    @genres = Genre.all
+    @items = Item.all
   end
   
   def about
