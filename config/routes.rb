@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   
   scope module: :public do
     root to: 'homes#top'
-    get 'about' => 'homes#about'
+    get 'about' => 'homes#about', as: 'about'
+    get 'customers/mypage' => 'customers#show'
+    resources :customers, only:[:edit, :update]
   end
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
