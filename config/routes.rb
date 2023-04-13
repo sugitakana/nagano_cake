@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     get '/customers/confirm_withdraw' => 'customers#confirm_withdraw', as: 'confirm_withdraw'
     patch '/customers/withdraw' => 'customers#withdraw', as: 'withdraw'
     resources :customers, only:[:edit, :update]
-    resources :addresses, only:[:index, :create, :edit, :uptate, :destroy]
+    resources :addresses, only:[:index, :create, :edit, :update, :destroy]
   end
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {

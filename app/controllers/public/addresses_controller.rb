@@ -16,6 +16,8 @@ class Public::AddressesController < ApplicationController
   end
   
   def update
+    @address = Address.find(params[:id])
+    
   end
   
   def destroy
