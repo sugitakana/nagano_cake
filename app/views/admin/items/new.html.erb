@@ -10,7 +10,7 @@
   <p>ジャンル</p>
   <%= f.collection_select :genre_id, Genre.all, :id, :name,{prompt: "--選択してください--"} %>
   <P>税抜価格</P>
-  <%= f.text_field :price %>
+  <%= f.text_field :price %>円
   <p>販売ステータス</p>
   <%= f.select :is_active, [["販売中",true],["販売停止中",false]],include_blank: "選択して下さい" %>
   <%= f.submit '新規登録' %>

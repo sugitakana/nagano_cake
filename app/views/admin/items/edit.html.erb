@@ -13,7 +13,7 @@
   <%= f.collection_select :genre_id, Genre.all, :id, :name,{prompt: @item.genre_id} %>
   
   <%= f.label :税抜価格 %>
-  <%= f,text_field :price %>
+  <%= f,text_field :price %>円
   
   <%= f.label :販売ステータス %>
   <%= f.radio_button :is_active, true %>
