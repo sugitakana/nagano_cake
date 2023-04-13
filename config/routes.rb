@@ -9,9 +9,10 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'about' => 'homes#about', as: 'about'
     get 'customers/mypage' => 'customers#show'
-    resources :customers, only:[:edit, :update]
     get '/customers/confirm_withdraw' => 'customers#confirm_withdraw', as: 'confirm_withdraw'
     patch '/customers/withdraw' => 'customers#withdraw', as: 'withdraw'
+    resources :customers, only:[:edit, :update]
+    resources :addresses, only:[:index, :create, :edit, :uptate, :destroy]
   end
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
