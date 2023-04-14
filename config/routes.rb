@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   registrations: "public/registrations",
   sessions: 'public/sessions'
   }
-  
+
   scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about', as: 'about'
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :customers, only:[:edit, :update]
     resources :addresses, only:[:index, :create, :edit, :update, :destroy]
     resources :items, only:[:index, :show]
+    resources :cart_items, only:[:index, :create, :update, :destroy]
   end
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {

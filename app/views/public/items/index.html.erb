@@ -4,7 +4,7 @@
   </tr>
   <tr>
     <% @genres.each do |genre| %>
-      <td><%#= link_to genre.name, genre_path(genre.id) %></td>
+      <td><%#= link_to "genre.name", genre_path(genre.id) %></td>
     <% end %>
   </tr>
 </table>
@@ -12,7 +12,7 @@
 <h3>商品一覧</h3>
 <%= @items.each do |item| %>
   <%= link_to item_path(item.id), do %>
-    <%= image_tag item.get_image %>
+    <%= image_tag item.get_image(200, 200) %>
     <%= item.name %>
     ¥<%= item.with_tax_price.to_s(:delimited) %>
    <% end %>
