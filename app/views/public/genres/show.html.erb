@@ -9,8 +9,8 @@
   </tr>
 </table>
 
-<h3>商品一覧(全<%= @items.count %>件)</h3>
-<% @items.each do |item| %>
+<h3><%= @genre.name %>一覧（全<%= @genre.items.count %>件）</h3>
+<% @genre.items.each do |item| %>
   <%= link_to item_path(item.id), do %>
     <%= image_tag item.get_image(200, 200) %><br>
     <%= item.name %><br>
