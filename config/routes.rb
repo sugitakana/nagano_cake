@@ -7,14 +7,17 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
+    resources :customers, only:[:edit, :update]
     get 'about' => 'homes#about', as: 'about'
     get 'customers/mypage' => 'customers#show'
     get '/customers/confirm_withdraw' => 'customers#confirm_withdraw', as: 'confirm_withdraw'
     patch '/customers/withdraw' => 'customers#withdraw', as: 'withdraw'
-    resources :customers, only:[:edit, :update]
     resources :addresses, only:[:index, :create, :edit, :update, :destroy]
     resources :items, only:[:index, :show]
     resources :genres, only:[:show]
+    resources :orders, only:[:new, :index, :create, :show]
+    get '/orders/complete' => 'orders#complete'
+    post '/orders/confirm' => 'orders#confirm'
     resources :cart_items, only:[:index, :create, :update, :destroy] do
        collection do
         delete "destroy_all"
