@@ -28,16 +28,34 @@ class Public::OrdersController < ApplicationController
   
   def create
     @order = Order.new(order_params)
+    @order.shipping_fee = 800
     @order.save
+    current_customer.cart_items.each do |cart_item|
+      @order_detail = OrderDetail.new
+      @order_detail.item_id = cart_item.item_id
+      @order_detail.quantity = cart_item.amount
+      @order_detail.price = cart_item.item.with_tax_price
+      @order_detail.order_id = @order.id
+      @order_detail.save
+    end
+    current_customer.cart_items.destroy_all
     redirect_to orders_complete_path
   end
   
   def complete
   end
   
+  def index
+    @orders = current_customer.orders
+  end
+  
+  def show
+  end
+    
+end
   
   private
   def order_params
-    params.require(:order).permit(:postal_code, :address, :name, :payment_method, :shipping_fee)
+    params.require(:order).permit(:customer_id, :postal_code, :address, :name, :payment_method, :shipping_fee)
   end
 end
