@@ -10,11 +10,11 @@
 
 <h2>新着商品</h2>
 <% @items.last(4).each do |item| %>
-  <%#= link_to 商品の詳細 do %>
-    <%= image_tag item.get_image %>
+  <#= link_to item_path(item.id) do %>
+    <%= image_tag item.get_image(200, 200) %>
     <%= item.name %>
-    <%= (item.price * 1.1).floor %>
-  <%# end %>
+    ¥<%= item.with_tax_price.to_s(:delimited) %>
+  <% end %>
 <% end %>
 
-<%#= link_to "全ての商品を見る",　商品の一覧(public) %>
+<%= link_to "全ての商品を見る", items_path %>

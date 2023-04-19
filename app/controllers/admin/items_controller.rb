@@ -1,4 +1,5 @@
 class Admin::ItemsController < ApplicationController
+  before_action :authenticate_admin!
   
   def index
     @items = Item.all
@@ -24,8 +25,12 @@ class Admin::ItemsController < ApplicationController
   
   def update
     @item = Item.find(params[:id])
-    @item.update(item_params)
-    redirect_to admins_item_path(@item)
+    if @item.update(item_params)
+       flash[:notice] = "商品情報を更新しました"
+       redirect_to admins_item_path(@item)
+    else
+      render 'edit'
+    end
   end
   
    private
