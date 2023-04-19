@@ -2,11 +2,11 @@
 <%= form_with model: @order, url: orders_confirm_path, method: :post, local: true do |f| %>
 
   <p>支払方法</p>
-  <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
-  <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
+  <%= f.radio_button :payment_method, order.payment_methods.key(0) %>
+  <%= f.label :payment_method_credit_card, order.payment_methods_i18n[:credit_card] %>
 
-  <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
-  <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
+  <%= f.radio_button :payment_method, order.payment_methods.key(1) %>
+  <%= f.label :payment_method_transfer, order.payment_methods_i18n[:transfer]%>
 
   <p>お届け先</p>
   <%= f.radio_button :address_option, 0, checked: "checked" %>

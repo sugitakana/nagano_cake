@@ -7,6 +7,11 @@ class Order < ApplicationRecord
   
   enum status: { wait_payment: 0, confirm_payment: 1, making: 2, preparing_ship: 3, finish_prepare: 4 }
 
+  def subtotal
+    item.with_tax_price * amount
+  end
+
+
   validates :shipping_fee, presence: true
   validates :amount_billed, presence: true
   validates :payment_method, presence: true
