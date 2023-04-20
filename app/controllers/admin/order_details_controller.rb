@@ -3,7 +3,13 @@ class Admin::OrderDetailsController < ApplicationController
 
   def update
     @order_detail = OrderDetail.find(params[:id])
-    order_detail.update(order_detail_paramas)
+    @order = @order_detail.order
+    @order_detail.update(order_detail_paramas)
+    if @order_detail.production_status == "製作中"
+      @oreder.update(status: "製作中")
+    els @order.order_details.count == @order.order_details.where(production_status: "製作終了")
+         @order.update(status: "発送準備中")
+    end
     redirect_to admin_order_path(@order_detail)
   end
 
