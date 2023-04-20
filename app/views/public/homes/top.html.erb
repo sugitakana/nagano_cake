@@ -1,7 +1,7 @@
 <h3>ジャンル検索</h3>
  <% @genres.each do |genre| %>
    <%= genre.name %>
-<% end %>
+ <% end %>
 
 <p>ようこそ、ながのCAKEへ！</p>
 <p>このサイトは、ケーキ販売のECサイトになります。</p>
@@ -10,11 +10,11 @@
 
 <h2>新着商品</h2>
 <% @items.last(4).each do |item| %>
-  <#= link_to item_path(item.id) do %>
+  <%= link_to item_path(item.id) do %>
     <%= image_tag item.get_image(200, 200) %>
     <%= item.name %>
     ¥<%= item.with_tax_price.to_s(:delimited) %>
   <% end %>
 <% end %>
 
-<%= link_to "全ての商品を見る", items_path %>
+<%= link_to "全ての商品を見る>", items_path %>

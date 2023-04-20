@@ -9,7 +9,7 @@
         </tr>
     </thead>
     <tbody>
-        <% @cart_items.each do |cart_item| %> 
+        <% @cart_items.each do |cart_item| %>
           <tr>
             <td><%= image_tag cart_item.itam.get_image(5,10) %>
                 <%= cart_item.item.name %>

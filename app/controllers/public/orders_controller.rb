@@ -54,6 +54,7 @@ class Public::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details
+    @order.amount_billed = @total_price + @order.shipping_fee
   end
   
   private
