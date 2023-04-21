@@ -1,17 +1,38 @@
-<h4>商品新規登録</h4>
-
- <%= form_with model: @item, url: admin_items_path do |f| %>
-  <p>商品画像</p>
-  <%= f.file_field :image, accept: "image/*" %>
-  <p>商品名</p>
-  <%= f.text_field :name %>
-  <p>商品説明</p>
-  <%= f.text_area :introduction %>
-  <p>ジャンル</p>
-  <%= f.collection_select :genre_id, Genre.all, :id, :name,{prompt: "--選択してください--"} %>
-  <P>税抜価格</P>
-  <%= f.text_field :price %>円
-  <p>販売ステータス</p>
-  <%= f.select :is_active, [["販売中",true],["販売停止中",false]],include_blank: "選択して下さい" %>
-  <%= f.submit '新規登録' %>
-<% end %>
+<div class="container">
+  <div class="row">
+   <div class="col-md-4">
+    <h4>商品新規登録</h4>
+   </div>
+   <%= form_with model: @item, url: admin_items_path do |f| %>
+     <table class="table table-borderless my-5">
+      <tr>
+       <th>商品画像</th>
+       <td><%= f.file_field :image, accept: "image/*" %></td>
+      </tr>
+      <tr>
+       <th>商品名</th>
+       <td><%= f.text_field :name %></td>
+      </tr>
+      <tr>
+       <th>商品説明</th>
+       <td><%= f.text_area :introduction %></td>
+      </tr>
+      <tr>
+       <th>ジャンル</th>
+       <td><%= f.collection_select :genre_id, Genre.all, :id, :name,{prompt: "--選択してください--"} %></td>
+      </tr>
+      <tr>
+       <th>税抜価格</th>
+       <td><%= f.text_field :price %>円</td>
+      </tr>
+      <tr>
+       <th>販売ステータス</th>
+       <td><%= f.select :is_active, [["販売中",true],["販売停止中",false]],include_blank: "選択して下さい" %></td>
+      </tr>
+     </table>
+     <div class="text-center">
+       <%= f.submit '新規登録', class: "btn btn-success w-25" %>
+     </div>
+   <% end %>
+  </div>
+</div>
