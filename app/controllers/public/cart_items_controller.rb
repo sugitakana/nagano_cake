@@ -3,7 +3,6 @@ class Public::CartItemsController < ApplicationController
   
   def index
     @cart_items = current_cosutmer.cart_items.all
-    @total_price = 0
   end
 
   def create

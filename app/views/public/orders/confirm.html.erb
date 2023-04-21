@@ -9,6 +9,7 @@
         </tr>
     </thead>
     <tbody>
+        <% total_price = 0 %>
         <% @cart_items.each do |cart_item| %>
           <tr>
             <td><%= image_tag cart_item.itam.get_image(5,10) %>
@@ -17,7 +18,7 @@
             <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
             <td><%= cart_item.amount %></td>
             <td><%= cart_item.subtotal.to_s(:delimited) %>
-                <% @total_price +=  cart_item.subtotal %>
+                <% total_price +=  cart_item.subtotal %>
             </td>
           </tr>
         <% end %>
@@ -27,15 +28,17 @@
 <table>
     <tr>
         <th>送料</th>
-        <td><%= @order.shipping_fee %></td>
+        <td><% @order.shipping_fee = 800 %>
+            <%= @order.shipping_fee %>
+        </td>
     </tr>
     <tr>
         <th>商品合計</th>
-        <td><%= @total_price.to_s(:delimited) %></td>
+        <td><%= total_price.to_s(:delimited) %></td>
     </tr>
     <tr>
         <th>請求金額</th>
-        <td><% @order.amount_billed = @total_price + @order.shipping_fee %>
+        <td><% @order.amount_billed = total_price + @order.shipping_fee %>
             <%= @order.amount_billed.to_s(:delimited) %>
         </td>
     </tr>
@@ -57,10 +60,12 @@
 
 <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
   <%= f.hidden_field :customer_id %>
+  <%= f.hidden_field :shipping_fee %>
   <%= f.hidden_field :amount_billed %>
-  <%= f.hidden_field :payment_method %>
+  <%= f.hidden_field :payment_method_i18n %>
   <%= f.hidden_field :postal_code %>
   <%= f.hidden_field :address %>
   <%= f.hidden_field :name %>
+  <%= f.hidden_field :status %>
   <%= f.submit "注文を確定する" %>
 <% end %>

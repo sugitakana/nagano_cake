@@ -25,12 +25,10 @@ class Public::OrdersController < ApplicationController
       render 'new'
     end
     @cart_items = current_customer.cart_items.all
-    @total_price = 0
   end
   
   def create
     @order = Order.new(order_params)
-    @order.shipping_fee = 800
     @order.save
     current_customer.cart_items.each do |cart_item|
       @order_detail = OrderDetail.new
@@ -48,7 +46,7 @@ class Public::OrdersController < ApplicationController
   end
   
   def index
-    @orders = current_customer.orders
+    @orders = current_customer.orders.all
   end
   
   def show

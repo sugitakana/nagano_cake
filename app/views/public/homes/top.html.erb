@@ -1,6 +1,8 @@
 <h3>ジャンル検索</h3>
  <% @genres.each do |genre| %>
-   <%= genre.name %>
+   <%= link_to genre_path(genre.id) do %>
+      <%= genre.name %>
+   <% end %>
  <% end %>
 
 <p>ようこそ、ながのCAKEへ！</p>

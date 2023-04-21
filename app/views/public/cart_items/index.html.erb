@@ -12,6 +12,7 @@
         </tr>
     </thead>
     <tbody>
+        <% total_price = 0 %>
         <% @cart_items.each do |cart_item| %>
          <tr>
             <td><%= image_tag cart_item.itam.get_image(5,10) %>
@@ -24,7 +25,7 @@
                 <% end %>
             </td>
             <td><%= cart_item.subtotal.to_s(:delimited) %></td>
-                <% @total_price +=  cart_item.subtotal %>
+                <% total_price +=  cart_item.subtotal %>
             <td><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete %></td>
          </tr>
         <% end %>
@@ -36,7 +37,7 @@
 <table>
     <tr>
         <th>合計金額</th>
-        <td><%= @total_price.to_s(:delimited) %></td>
+        <td><%= total_price.to_s(:delimited) %></td>
     </tr>
 </table>
 
