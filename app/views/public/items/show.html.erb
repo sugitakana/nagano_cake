@@ -1,16 +1,13 @@
-<table>
-  <tr>
-    <th>ジャンル検索</th>
-  </tr>
-  <tr>
-    <% @genres.each do |genre| %>
-      <td><%= link_to "genre.name", genre_path(genre.id) %></td>
-    <% end %>
-  </tr>
-</table>
+
+<h3>ジャンル検索</h3>
+ <% @genres.each do |genre| %>
+   <%= link_to genre_path(genre.id) do %>
+      <%= genre.name %>
+   <% end %>
+ <% end %>
+
 
 <%= image_tag @item.get_image(250, 250) %>
-
 <h3><%= @item.name %></h3>
 <p><%= @item.introduction %></p>
 <p><% if @item.is_active == true %>
