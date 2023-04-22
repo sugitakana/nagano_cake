@@ -1,17 +1,13 @@
-<table>
-  <tr>
-    <th>ジャンル検索</th>
-  </tr>
-  <tr>
-    <% @genres.each do |genre| %>
-      <td><%= link_to "genre.name", genre_path(genre.id) %></td>
-    <% end %>
-  </tr>
-</table>
+<h5>ジャンル検索</h5>
+ <% @genres.each do |genre| %>
+   <%= link_to genre_path(genre.id) do %>
+      <%= genre.name %>
+   <% end %>
+ <% end %>
 
-<h3><%= @genre.name %>一覧（全<%= @genre.items.count %>件）</h3>
+<h4><%= @genre.name %>一覧（全<%= @genre.items.count %>件）</h4>
 <% @genre.items.each do |item| %>
-  <%= link_to item_path(item.id), do %>
+  <%= link_to item_path(item.id) do %>
     <%= image_tag item.get_image(200, 200) %><br>
     <%= item.name %><br>
     ¥<%= item.with_tax_price.to_s(:delimited) %>

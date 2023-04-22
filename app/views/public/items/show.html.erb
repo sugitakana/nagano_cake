@@ -1,27 +1,39 @@
-
-<h3>ジャンル検索</h3>
- <% @genres.each do |genre| %>
-   <%= link_to genre_path(genre.id) do %>
-      <%= genre.name %>
-   <% end %>
- <% end %>
-
-
-<%= image_tag @item.get_image(250, 250) %>
-<h3><%= @item.name %></h3>
-<p><%= @item.introduction %></p>
-<p><% if @item.is_active == true %>
-       <%= "販売中" %>
-   <% else %>
-       <%= "販売停止中" %>
-   <% end %></p>
-<p>¥<%= @item.with_tax_price.to_s(:delimited) %>（税込） </p>
-
-<% if @item.is_active == true %>
-  <%= form_with model: @cart_item, url: cart_items_path, method: :post, local: true do |f| %>
-    <%= f.label :amount, "個数選択" %>
-    <%= f.select :amount, *[1..10] %>
-    <%= f.hidden_field :item_id, :value => @item.id %>
-    <%= f.submit "カートに入れる" %>
-  <% end %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2 mr-3">
+      <table class="table table-bordered">
+        <tr>
+          <th>ジャンル検索</th>
+        </tr>
+        <% @genres.each do |genre| %>
+         <tr>
+           <td><%= link_to genre_path(genre.id), class: "text-decoration-none text-dark" do %>
+                 <%= genre.name %>
+               <% end %>
+           </td>
+         </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <%= image_tag @item.get_image(300, 300) %>
+    </div>
+    <div class="col-md-5">
+      <h3 class="font-weight-bold"><%= @item.name %></h3>
+      <p><%= @item.introduction %></p>
+      <p><% if @item.is_active == true %>
+           <%= "販売中" %>
+         <% else %>
+           <%= "売り切れ" %>
+         <% end %></p>
+      <p>¥<%= @item.with_tax_price.to_s(:delimited) %>（税込） </p>
+      <% if @item.is_active == true %>
+        <%= form_with model: @cart_item, url: cart_items_path, method: :post, local: true do |f| %>
+          <%= f.select :amount, *[1..10], { include_blank: "個数選択"}, class:"pr-5 mr-4" %>
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          <%= f.submit "カートに入れる", class: "ml-5 btn btn-success" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

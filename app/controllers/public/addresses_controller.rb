@@ -3,16 +3,18 @@ class Public::AddressesController < ApplicationController
   
   def index
     @address = Address.new
-    @addresses = current_addresses.all
+    @addresses = current_customer.addresses
   end
   
   def create
     @address = Address.new(address_params)
+    @address.customer_id = current_customer.id
     if @address.save
        flash[:notice] = "登録しました"
        redirect_to addresses_path
     else
       @address = Address.new
+      @addresses = current_customer.addresses
       render 'index'
     end
   end

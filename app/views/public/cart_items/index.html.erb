@@ -15,7 +15,7 @@
         <% total_price = 0 %>
         <% @cart_items.each do |cart_item| %>
          <tr>
-            <td><%= image_tag cart_item.itam.get_image(5,10) %>
+            <td><%= image_tag cart_item.item.get_image(5,10) %>
                 <%= cart_item.item.name %>
             </td>
             <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>

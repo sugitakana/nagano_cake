@@ -1,14 +1,15 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
-  
+
   def index
-    @cart_items = current_cosutmer.cart_items.all
+    @cart_items = current_customer.cart_items
   end
 
   def create
     @cart_item = current_customer.cart_items.new(cart_item_params)
-    if current_cosutmer.cart_item.find_by(item_id: params[:cart_item][:item_id]).present?
-      cart_item = current_cosutmer.cart_item.find_by(item_id: params[:cart_item][:item_id])
+    @cart_item.customer_id = current_customer.id
+    if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
+      cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
       cart_item.amount += params[:cart_item][:amount].to_i
       cart_item.save
       flash[:notice] = "カートに商品を入れました"
@@ -17,8 +18,10 @@ class Public::CartItemsController < ApplicationController
       flash[:notice] = "カートに商品を入れました"
       redirect_to cart_items_path
     else
+      @genres = Genre.all
+      @item = @cart_item.item
       flash[:alert] = "個数を選択してください"
-      render "/items/show"
+      render template: "public/items/show"
     end
   end
 
