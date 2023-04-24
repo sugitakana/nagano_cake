@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row mt-5">
     <div class="col-md-2 mr-3">
       <table class="table table-bordered">
         <tr>
@@ -20,19 +20,19 @@
     </div>
     <div class="col-md-5">
       <h3 class="font-weight-bold"><%= @item.name %></h3>
-      <p><%= @item.introduction %></p>
-      <p><% if @item.is_active == true %>
-           <%= "販売中" %>
+      <h5><%= @item.introduction %></h5>
+      <h5><% if @item.is_active == true %>
+           <% %>
          <% else %>
            <%= "売り切れ" %>
-         <% end %></p>
-      <p>¥<%= @item.with_tax_price.to_s(:delimited) %>（税込） </p>
+         <% end %></h5>
+      <h5 class="mt-5">¥<%= @item.with_tax_price.to_s(:delimited) %>（税込） </h5>
       <% if @item.is_active == true %>
         <%= form_with model: @cart_item, url: cart_items_path, method: :post, local: true do |f| %>
-          <%= f.select :amount, *[1..10], { include_blank: "個数選択"} %>
+          <%= f.select :amount, *[1..10], { include_blank: "個数選択"}, required: true, class: "pr-5 mt-4" %>
           <%= f.hidden_field :item_id, :value => @item.id %>
           <div class="mt-4">
-           <%= f.submit "カートに入れる", class: "btn btn-success" %>
+           <%= f.submit "カートに入れる", class: "btn btn-success float-right" %>
           </div>
         <% end %>
       <% end %>

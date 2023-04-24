@@ -15,6 +15,7 @@ class Public::CartItemsController < ApplicationController
       flash[:notice] = "カートに商品を入れました"
       redirect_to cart_items_path
     elsif @cart_item.save
+      @cart_items = current_customer.cart_items.all
       flash[:notice] = "カートに商品を入れました"
       redirect_to cart_items_path
     else
@@ -49,6 +50,6 @@ class Public::CartItemsController < ApplicationController
 
   private
     def cart_item_params
-        params.require(:cart_item).permit(:item_id, :amount)
+        params.require(:cart_item).permit(:item_id, :amount, :customer_id)
     end
 end
