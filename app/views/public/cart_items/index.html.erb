@@ -22,15 +22,15 @@
                 <td><%= image_tag cart_item.item.get_image(80, 100) %>
                     <%= cart_item.item.name %>
                 </td>
-                <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
-                <td><%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch, local: true do |f| %>
+                <td class="align-middle"><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
+                <td class="align-middle"><%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch, local: true do |f| %>
                         <%= f.select :amount, *[1..10] %>
                         <%= f.submit "変更", class: "btn btn-success" %>
                     <% end %>
                 </td>
-                <td><%= cart_item.subtotal.to_s(:delimited) %></td>
+                <td class="align-middle"><%= cart_item.subtotal.to_s(:delimited) %></td>
                   <% total_price +=  cart_item.subtotal %>
-                <td><%= link_to cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger" do %>
+                <td class="align-middle"><%= link_to cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger" do %>
                       削除する
                     <% end %>
                 </td>

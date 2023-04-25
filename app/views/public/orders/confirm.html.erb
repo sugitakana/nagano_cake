@@ -18,9 +18,9 @@
                 <td><%= image_tag cart_item.item.get_image(80, 100) %>
                     <%= cart_item.item.name %>
                 </td>
-                <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
-                <td><%= cart_item.amount %></td>
-                <td><%= cart_item.subtotal.to_s(:delimited) %>
+                <td class="align-middle"><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
+                <td class="align-middle"><%= cart_item.amount %></td>
+                <td class="align-middle"><%= cart_item.subtotal.to_s(:delimited) %>
                     <% total_price +=  cart_item.subtotal %>
                 </td>
               </tr>
