@@ -15,14 +15,18 @@
         <% end %>
       </table>
     </div>
-    <div class="col-md-8">
-         <p>ようこそ、ながのCAKEへ！</p>
-         <p>このサイトは、ケーキ販売のECサイトになります。</p>
-         <p>会員でない方も商品の閲覧はできますが、</p>
-         <p>購入には会員登録が必要になります。</p>
+    <div class="col-md-8 font-weight-bold">
+      <div class="top-image">
+        <div class="top-message">
+         <p class="top">ようこそ、ながのCAKEへ！</p>
+         <p class="top">このサイトは、ケーキ販売のECサイトになります。</p>
+         <p class="top">会員でない方も商品の閲覧はできますが、</p>
+         <p class="top">購入には会員登録が必要になります。</p>
+        </div>
+      </div>
     </div>
     <div class="col-md-10 offset-md-2">
-      <h4>新着商品</h4>
+      <h4 class="mt-4 font-weight-bold">新着商品</h4>
       <% @items.last(4).each do |item| %>
         <%= link_to item_path(item.id), class: "text-decoration-none text-dark" do %>
           <%= image_tag item.get_image(200, 200) %><br>
