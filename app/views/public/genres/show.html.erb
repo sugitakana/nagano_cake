@@ -16,14 +16,19 @@
       </table>
     </div>
     <div class="col-md-9">
-      <h4 class="mb-4"><%= @genre.name %>一覧（全<%= @genre.items.count %>件）</h4>
-      <% @genre.items.each do |item| %>
+      <h4 class="mb-4"><%= @genre.name %>一覧（全<%= @items.count %>件）</h4>
+      <% @items.each do |item| %>
+       <div class="dtable">
         <%= link_to item_path(item.id), class: "text-decoration-none text-dark" do %>
           <%= image_tag item.get_image(200, 200) %><br>
           <%= item.name %><br>
           ¥<%= item.with_tax_price.to_s(:delimited) %>
-      <% end %>
+        <% end %>
+       </div>
      <% end %>
+     <div class="text-center">
+       <%= paginate @items %>
+     </div>
     </div>
   </div>
 </div>

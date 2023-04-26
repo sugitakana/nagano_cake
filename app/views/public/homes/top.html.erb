@@ -28,13 +28,15 @@
     <div class="col-md-10 offset-md-2">
       <h4 class="mt-4 font-weight-bold">新着商品</h4>
       <% @items.last(4).each do |item| %>
-        <%= link_to item_path(item.id), class: "text-decoration-none text-dark" do %>
-          <%= image_tag item.get_image(200, 200) %><br>
-          <%= item.name %><br>
-          ¥<%= item.with_tax_price.to_s(:delimited) %>
-        <% end %>
+       <div class="dtable">
+           <%= link_to item_path(item.id), class: "text-decoration-none text-dark" do %>
+             <%= image_tag item.get_image(200, 200) %><br>
+             <%= item.name %><br>
+             ¥<%= item.with_tax_price.to_s(:delimited) %>
+           <% end %>
+       </div>
       <% end %>
-      <div>
+      <div class="col-md-12">
         <%= link_to items_path, class: "float-right" do %>
           全ての商品を見る>
         <% end %>

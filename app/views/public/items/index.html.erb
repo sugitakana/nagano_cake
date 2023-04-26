@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col-md-2 mr-3">
+    <div class="col-md-2">
       <table class="table table-bordered">
         <tr>
           <th>ジャンル検索</th>
@@ -15,16 +15,18 @@
         <% end %>
       </table>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-10">
       <h4 class="mb-4">商品一覧(全<%= @items.count %>件)</h4>
         <% @items.each do |item| %>
+         <div class="dtable mr-3">
           <%= link_to item_path(item.id), class: "text-decoration-none text-dark" do %>
             <%= image_tag item.get_image(200, 200) %><br>
             <%= item.name %><br>
             ¥<%= item.with_tax_price.to_s(:delimited) %>
           <% end %>
+         </div>
         <% end %>
-        <%= paginate @items %>
+       <%= paginate @items %>
     </div>
   </div>
 </div>
