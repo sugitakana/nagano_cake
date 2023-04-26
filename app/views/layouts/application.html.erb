@@ -16,10 +16,11 @@
     <header>
       <div class="border-bottom border-dark">
         <nav class="navbar navbar-expand-lg navbar-light">
-          <%= link_to root_path, class: 'navbar-nav mr-auto' do %>
+          <%= link_to root_path, class: 'navbar-nav' do %>
             <%= image_tag 'cake_logo.jpg', size: '70x70' %>
           <% end %>
-          <ul class="navbar-nav ml-auto">
+          <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
              <% if admin_signed_in? %>
                 <li class="nav-item mr-3">
                   <%= link_to admin_items_path, class: 'text-decoration-none text-dark' do %>
@@ -90,7 +91,8 @@
                   <% end %>
                 </li>
              <% end %>
-          </ul>
+            </ul>
+          </div>
         </nav>
       </div>
     </header>
@@ -106,9 +108,11 @@
        <% end %>
        <%= yield %>
     </main>
-    <footer>
+    <footer class="border-top border-dark pt-5 pb-4 mt-4">
       <div class="container">
         <div class="row no-gutters">
+          <div class="col-md-4">
+          </div>
         </div>
       </div>
     </footer>

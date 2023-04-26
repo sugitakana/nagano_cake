@@ -6,11 +6,11 @@ class Public::CustomersController < ApplicationController
   end
   
   def edit
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
   end
   
   def update
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
     if @customer.update(customer_params)
        flash[:notice] = "登録情報を変更しました"
        redirect_to customers_mypage_path

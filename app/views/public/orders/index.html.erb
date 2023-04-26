@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-     <h4>注文履歴一覧</h4>
+     <h4 class="mt-4 mb-5">注文履歴一覧</h4>
      <table class="table table table-bordered">
        <thead class="table-secondary">
         <tr>
@@ -16,7 +16,7 @@
        <tbody class="table-sm">
         <% @orders.each do |order| %>
           <tr>
-            <td class="align-middle"><%= order.created_at.strftime('%Y/%m/%d') %></td>
+            <td class=align-middle><%= order.created_at.strftime('%Y/%m/%d') %></td>
             <td>〒<%= order.postal_code %><br>
                 <%= order.address %><br>
                 <%= order.name %>

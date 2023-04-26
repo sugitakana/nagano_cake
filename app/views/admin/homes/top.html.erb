@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10">
-      <h4 class="mt-4">注文履歴一覧</h4>
+      <h4 class="mt-4 mb-5">注文履歴一覧</h4>
 
-      <table class="table mt-3">
+      <table class="table mt-3 ml-5">
         <thead>
           <tr class="table-secondary">
               <th>購入日時</th>
@@ -15,7 +15,10 @@
         <tbody>
           <% @orders.each do |order| %>
             <tr>
-                <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order.id) %></td>
+                <td><%= link_to admin_order_path(order.id), class: "text-dark" do %>
+                      <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                    <% end %>
+                </td>
                 <td><%= order.customer.last_name + order.customer.first_name %></td>
                 <td><% sum = 0 %>
                     <% order.order_details.all.each do |order_detail| %>
@@ -27,6 +30,7 @@
                 <td><%= order.status_i18n %></td>
             </tr>
           <% end %>
+          <%= paginate @orders %>
         </tbody>
       </table>
     </div>

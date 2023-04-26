@@ -1,4 +1,4 @@
-<div class="container d-flex align-items-center justify-content-center" style="height:300px;">
+<div class="container d-flex align-items-center justify-content-center" style="height:500px;">
    <div class="row">
       <div class="col-md-12">
         <h5 class="font-weight-bold text-center mb-5">本当に退会しますか？</h5>
@@ -11,7 +11,7 @@
         <%= link_to customers_mypage_path, class: "btn btn-primary col-md-4 ml-5" do %>
            退会しない
         <% end %>
-        <%= link_to withdraw_path, method: :patch, data: { confilm: "本当に退会しますか？" }, class: "btn btn-danger col-md-4 ml-5" do %>
+        <%= link_to withdraw_path, method: :patch, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger col-md-4 ml-5" do %>
            退会する
         <% end %>
       </div>
