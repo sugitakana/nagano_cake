@@ -27,7 +27,7 @@
     </div>
     <div class="col-md-10 offset-md-2">
       <h4 class="mt-4 font-weight-bold">新着商品</h4>
-      <% @items.last(4).each do |item| %>
+      <% @items.each do |item| %>
        <div class="dtable">
            <%= link_to item_path(item.id), class: "text-decoration-none text-dark" do %>
              <%= image_tag item.get_image(200, 200) %><br>
